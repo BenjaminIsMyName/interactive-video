@@ -6,7 +6,6 @@ import { z } from 'zod'
 import { zColor } from '@remotion/zod-types'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { Input } from './Input'
-import React from 'react'
 
 const dispatchSetStateActionNumber = z.unknown().refine(
     (val): val is Dispatch<SetStateAction<number>> => {
@@ -17,6 +16,7 @@ const dispatchSetStateActionNumber = z.unknown().refine(
     }
 )
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const myCompSchema = z.object({
     titleText: z.string(),
     titleColor: zColor(),
@@ -35,8 +35,6 @@ export function MyComposition(props: MyCompProps): JSX.Element {
     const { setDuration } = props
 
     const [subtitle, setSubtitle] = useState('')
-
-    console.log(subtitle)
 
     return (
         <>

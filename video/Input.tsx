@@ -20,6 +20,7 @@ const dispatchSetStateActionString = z.unknown().refine(
     }
 )
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const myCompSchema = z.object({
     duration: z.number(),
     setDuration: dispatchSetStateActionNumber,
@@ -27,6 +28,15 @@ export const myCompSchema = z.object({
 })
 
 type MyCompProps = z.infer<typeof myCompSchema>
+
+/*
+
+	In this component the magic happens.
+	The useEffect hook is used to increment the duration every second by a second. 
+	Meaning, it increments the duration by the time the user spends on the input screen.
+	Once the user submits the input, we stop incrementing the duration and move on to the next screen.
+
+*/
 
 export function Input(props: MyCompProps): JSX.Element {
     const { setDuration } = props
@@ -41,10 +51,6 @@ export function Input(props: MyCompProps): JSX.Element {
 
     useEffect(() => {
         if (isSubmitted) return
-        // eslint-disable-next-line capitalized-comments
-        // intervalRef.current = setInterval(() => {
-        // 	setDuration((prev) => prev + 1);
-        // }, 1000);
 
         const incrementDuration = () => setDuration(prev => prev + 1)
 
@@ -75,7 +81,7 @@ export function Input(props: MyCompProps): JSX.Element {
                     setIsSubmitted(true)
                 }}
             >
-                Submit
+                {isSubmitted ? 'Loading...' : 'Submit'}
             </button>
         </AbsoluteFill>
     )

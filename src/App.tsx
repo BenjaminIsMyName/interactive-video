@@ -1,12 +1,9 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { MyComposition, myCompSchema } from '../video/Composition'
 import { Player } from '@remotion/player'
 
 function App() {
-    const [count, setCount] = useState(0)
     const [duration, setDuration] = useState(0)
 
     const durationInFrames = duration * 30
